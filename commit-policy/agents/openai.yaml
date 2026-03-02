@@ -1,0 +1,4 @@
+interface:
+  display_name: "Commit Policy"
+  short_description: "Conventional commit and policy checker."
+  default_prompt: "Create or review commit messages that comply with Conventional Commits and repository policy."
