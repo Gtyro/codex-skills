@@ -26,16 +26,17 @@ Stage changes safely, then generate commit messages that are machine-checkable a
 
 Apply these rules when staging:
 
-1. Default staging mode is interactive patch staging: `git add -p <task-paths...>`.
-2. Build candidate paths from files changed in the current task/session.
-3. Stage only hunks that belong to the current task; skip unrelated hunks.
-4. If the user gives an explicit file/path scope, constrain `git add -p` to that scope.
-5. Use `git add -A` only when the user explicitly asks to stage all changes.
-6. If `git status --short` shows conflict markers (`UU`, `AA`, `DD`), stop and report conflicts.
-7. In multi-agent overlap cases on the same file, keep using patch mode and avoid staging mixed unrelated hunks.
-8. If a mixed hunk cannot be cleanly separated in patch mode, leave it unstaged and report it.
-9. After staging, show a concise staged summary with `git diff --cached --name-status`.
-10. Do not run `git commit` unless the user explicitly asks.
+1. Build candidate paths from files changed in the current task/session.
+2. Classify each candidate file as task-pure or mixed.
+3. If a file is task-pure (all changes belong to the current task and no overlap risk), stage it directly with `git add <path>`.
+4. Use interactive patch staging `git add -p <path>` for mixed files, uncertain ownership, or shared files.
+5. If the user gives an explicit file/path scope, constrain staging commands to that scope.
+6. Use `git add -A` only when the user explicitly asks to stage all changes.
+7. If `git status --short` shows conflict markers (`UU`, `AA`, `DD`), stop and report conflicts.
+8. In multi-agent overlap cases on the same file, keep using patch mode and avoid staging mixed unrelated hunks.
+9. If a mixed hunk cannot be cleanly separated in patch mode, leave it unstaged and report it.
+10. After staging, show a concise staged summary with `git diff --cached --name-status`.
+11. Do not run `git commit` unless the user explicitly asks.
 
 ## Subject Rules
 
@@ -47,15 +48,6 @@ Apply all rules:
 4. Use imperative style in the subject clause.
 5. Avoid transient planning labels in subject (for example: `W2`, `M1`, `phase-x`, `milestone-y`).
 6. Avoid trailing period.
-
-## Body Rules
-
-Add a body only when needed for context.
-
-1. Use short bullet lines for rationale or impact.
-2. Place plan traceability links in body, never in subject.
-3. Use `Refs: <path-or-ticket>` when tracing to plans/tasks.
-4. Keep body factual and implementation-focused.
 
 ## Output Contract
 

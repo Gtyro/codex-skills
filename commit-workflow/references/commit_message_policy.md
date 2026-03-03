@@ -7,18 +7,16 @@ Keep normative guardrails in `SKILL.md`; keep this file focused on applied guida
 
 1. Default task-scoped flow:
    - `git status --short`
-   - `git add -p <task-path1> <task-path2> ...`
-   - Stage only hunks from the current task/session.
+   - Stage task-pure files directly: `git add <task-pure-path1> <task-pure-path2> ...`
+   - Use patch mode for mixed/uncertain files: `git add -p <mixed-path1> <mixed-path2> ...`
    - `git diff --cached --name-status`
 2. Explicit user-scoped flow:
-   - `git add -p <path1> <path2> ...`
+   - For fully task-pure scoped files: `git add <path1> <path2> ...`
+   - Otherwise: `git add -p <path1> <path2> ...`
    - `git diff --cached --name-status`
-3. Stage-all flow (explicit request only):
-   - `git add -A`
-   - `git diff --cached --name-status`
-4. Conflict handling:
+3. Conflict handling:
    - If status includes `UU`, `AA`, or `DD`, stop and ask user to resolve conflicts before staging.
-5. Multi-agent overlap handling:
+4. Multi-agent overlap handling:
    - Prefer patch staging to isolate current-task hunks in shared files.
    - Do not ask for path scope by default; derive paths from current task changes.
    - If a hunk is mixed and cannot be split safely, leave it unstaged and report it.

@@ -57,11 +57,20 @@ After installation, restart Codex to pick up new skills.
 
 ## Use From Any Project
 
-Clone this repository once, then install skills globally:
+Install directly from GitHub (no local `git clone` required):
 
 ```bash
-git clone <your-org>/<your-skills-repo>.git ~/.local/share/codex-skills
-~/.local/share/codex-skills/scripts/install_to_codex_home.sh --all --force
+python3 "${CODEX_HOME:-$HOME/.codex}/skills/.system/skill-installer/scripts/install-skill-from-github.py" \
+  --repo Gtyro/codex-skills \
+  --path commit-workflow
 ```
 
-This keeps skills decoupled from application repositories and reusable across projects.
+Install multiple skills from the same repository in one command by adding more paths:
+
+```bash
+python3 "${CODEX_HOME:-$HOME/.codex}/skills/.system/skill-installer/scripts/install-skill-from-github.py" \
+  --repo Gtyro/codex-skills \
+  --path commit-workflow another-skill-name
+```
+
+This keeps skills decoupled from application repositories and reusable across projects, without keeping a separate local checkout.
