@@ -6,7 +6,7 @@ Reusable Codex skills managed as a standalone Git repository.
 
 ```
 codex-skills/
-├── commit-policy/
+├── commit-workflow/
 │   ├── SKILL.md
 │   ├── agents/openai.yaml
 │   └── references/
@@ -44,7 +44,7 @@ Install all skills to `${CODEX_HOME:-~/.codex}/skills`:
 Install specific skills:
 
 ```bash
-./scripts/install_to_codex_home.sh commit-policy
+./scripts/install_to_codex_home.sh commit-workflow
 ```
 
 Overwrite existing installed skills:

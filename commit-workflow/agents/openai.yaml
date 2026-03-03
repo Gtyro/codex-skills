@@ -1,0 +1,4 @@
+interface:
+  display_name: "Commit Workflow"
+  short_description: "Auto-stage changes and produce policy-compliant commits."
+  default_prompt: "Stage git changes, then create or review commit messages that comply with Conventional Commits and repository policy."

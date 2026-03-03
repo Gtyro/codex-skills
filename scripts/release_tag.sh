@@ -21,12 +21,17 @@ if ! git -C "$ROOT_DIR" rev-parse --is-inside-work-tree >/dev/null 2>&1; then
   exit 1
 fi
 
-"$ROOT_DIR/scripts/validate_skills.sh"
-
 if [[ -n "$(git -C "$ROOT_DIR" status --porcelain)" ]]; then
   echo "Working tree is dirty. Commit or stash changes before tagging."
   exit 1
 fi
+
+if git -C "$ROOT_DIR" show-ref --verify --quiet "refs/tags/$TAG"; then
+  echo "Tag already exists: $TAG"
+  exit 1
+fi
+
+"$ROOT_DIR/scripts/validate_skills.sh"
 
 git -C "$ROOT_DIR" tag -a "$TAG" -m "skills release ${TAG}"
 echo "Created tag: ${TAG}"
