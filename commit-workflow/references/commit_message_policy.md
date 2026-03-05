@@ -9,11 +9,11 @@ Keep normative guardrails in `SKILL.md`; keep this file focused on applied guida
    - `git status --short`
    - Stage task-pure files directly: `git add <task-pure-path1> <task-pure-path2> ...`
    - Use patch mode for mixed/uncertain files: `git add -p <mixed-path1> <mixed-path2> ...`
-   - `git diff --cached --name-status`
+   - `git diff --staged --name-status`
 2. Explicit user-scoped flow:
    - For fully task-pure scoped files: `git add <path1> <path2> ...`
    - Otherwise: `git add -p <path1> <path2> ...`
-   - `git diff --cached --name-status`
+   - `git diff --staged --name-status`
 3. Conflict handling:
    - If status includes `UU`, `AA`, or `DD`, stop and ask user to resolve conflicts before staging.
 4. Multi-agent overlap handling:
@@ -67,7 +67,7 @@ Pick the most specific stable scope from changed paths:
 
 ## Quick Review Checklist
 
-1. Intended files are staged and visible in `git diff --cached --name-status`.
+1. Intended files are staged and visible in `git diff --staged --name-status`.
 2. Subject follows one of the two allowed templates.
 3. `type` reflects the dominant technical intent.
 4. `scope` is specific and stable, or intentionally omitted.

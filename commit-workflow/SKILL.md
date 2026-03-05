@@ -35,7 +35,7 @@ Apply these rules when staging:
 7. If `git status --short` shows conflict markers (`UU`, `AA`, `DD`), stop and report conflicts.
 8. In multi-agent overlap cases on the same file, keep using patch mode and avoid staging mixed unrelated hunks.
 9. If a mixed hunk cannot be cleanly separated in patch mode, leave it unstaged and report it.
-10. After staging, show a concise staged summary with `git diff --cached --name-status`.
+10. After staging, show a concise staged summary with `git diff --staged --name-status`.
 11. Do not run `git commit` unless the user explicitly asks.
 
 ## Subject Rules
