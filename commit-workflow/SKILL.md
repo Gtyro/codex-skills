@@ -53,7 +53,7 @@ Apply all rules:
 
 When asked for commit text, return:
 
-1. One recommended commit message.
+1. One recommended commit message in a fenced code block.
 2. Up to two alternatives only when tradeoffs are meaningful.
 3. A short staged-file summary when staging was performed.
 4. A `git commit -m "..."` command only if the user asks for a command.
